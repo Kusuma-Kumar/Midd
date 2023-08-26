@@ -8,6 +8,8 @@ import NavOptions from "../components/NavOptions";
 import { useDispatch } from "react-redux";
 import { setDestination,setOrigin } from "../slices/navSlice";
 
+// edit code to set initial location using phone location permissions
+
 
 const HomeScreen = () => {
    const dispatch = useDispatch();
@@ -19,14 +21,7 @@ const HomeScreen = () => {
 
         <GooglePlacesAutocomplete
           placeholder="From location"
-          styles ={{
-            container: {
-              flex:0,
-            },
-            textInput: {
-              fontSize:18,
-            },
-          }}
+          styles={toInputBoxStyles}
 
           onPress={(data,details = null) => {
             dispatch(
@@ -58,3 +53,17 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({});
+
+const toInputBoxStyles = StyleSheet.create({
+  container:{
+      paddingTop: 15,
+      flex: 0,
+  },
+  textInput: {
+      backgroundColor: "#DDDDDF",
+      fontSize: 18,
+  },
+  textInputContainer: {
+      paddingHorizontal: 20,
+  }
+});
