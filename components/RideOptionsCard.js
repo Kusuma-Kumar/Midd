@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import tw from 'tailwind-react-native-classnames';
 import { Icon } from 'react-native-elements';
+import { useSelector } from 'react-redux';
+import { selectTravelTimeInformation } from '../slices/navSlice';
 
 const data = [
   {
@@ -41,6 +43,7 @@ const data = [
 const RideOptionsCard = () => {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
+  const travelTimeInformation = useSelector(selectTravelTimeInformation);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -50,23 +53,23 @@ const RideOptionsCard = () => {
     >
       <View>
         <Text style={tw`font-semibold text-lg`}>{item.title}</Text>
-        <Text>Travel time info</Text>
+        <Text>{travelTimeInformation?.duration.text}</Text>
       </View>
     </TouchableOpacity>
   );
 
   return (
     <SafeAreaView style={tw`flex-grow`}>
-      <View>
-        <View style={tw`flex flex-row items-center`}>
+      <View style={tw`flex flex-col h-full`}>
+        <View style={tw`flex flex-row items-center px-2 py-2`}>
           <TouchableOpacity
             onPress={() => navigation.navigate("NavigateCard")}
-            style={tw`p-3`}
+            style={tw`p-2`}
           >
             <Icon name="chevron-left" type="fontawesome" />
           </TouchableOpacity>
           <View style={tw`flex-1 items-center`}>
-            <Text style={tw`text-xl font-bold py-5 text-center`}>Pick your ride</Text>
+            <Text style={tw`text-xl font-bold text-center`}>Pick a ride - {travelTimeInformation?.distance.text}</Text>
           </View>
         </View>
 
@@ -76,18 +79,25 @@ const RideOptionsCard = () => {
           renderItem={renderItem}
           style={tw`flex-grow`}
         />
-      </View>
 
-      <TouchableOpacity style={tw`bg-blue-900 py-3`}>
-        <Text style={tw`text-center text-white text-xl`}>
-          Choose {selected?.title}
-        </Text>
-      </TouchableOpacity>
+        {/* Choose/Select Button */}
+        <View>
+          <TouchableOpacity
+            style={tw`bg-blue-900 p-4 rounded-lg self-center`}
+            onPress={() => {
+              // Handle button press
+            }}
+          >
+            <Text style={tw`text-white font-bold text-lg`}> Choose {selected?.title} </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
 
-
 export default RideOptionsCard;
 
 const styles = StyleSheet.create({});
+
+// find a way to fix choose button on screen and center pick a ride
