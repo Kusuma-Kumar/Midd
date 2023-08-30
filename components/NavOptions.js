@@ -30,7 +30,7 @@ const data = [
         id: "135",
         title:"On-campus Retail",
         image: require("./retail.png"),
-        screen: "RetailOptions",
+        screen: "RetailOptionsScreen",
     },
 
 ];
