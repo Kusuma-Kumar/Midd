@@ -81,9 +81,9 @@ const RideOptionsCard = () => {
         />
 
         {/* Choose/Select Button */}
-        <View>
+        <View style={tw`flex items-center px-4`}>
           <TouchableOpacity
-            style={tw`bg-blue-900 p-4 rounded-lg self-center`}
+            style={tw`w-full bg-blue-900 p-4 self-center`}
             onPress={() => {
               // Handle button press
             }}
