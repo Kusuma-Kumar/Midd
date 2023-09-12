@@ -40,6 +40,7 @@ const HomeScreen = () => {
           }}
           nearbyPlacesAPI="GooglePlacesSearch"
           debounce={400}
+          
         />
 
         <NavOptions />
